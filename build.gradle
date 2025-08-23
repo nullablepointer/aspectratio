@@ -11,11 +11,6 @@ base {
 }
 
 
-fabricApi {
-    configureDataGeneration {
-        client = true
-    }
-}
 
 repositories {
     maven {
