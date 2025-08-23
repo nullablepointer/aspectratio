@@ -16,5 +16,8 @@ public class Config {
             .build();
 
     @SerialEntry
-    public float multiplier = 1.0f;
+    public float ratio = 1.0f;
+
+    @SerialEntry
+    public Aspectratio.Modes mode = Aspectratio.Modes.MULTIPLIER;
 }

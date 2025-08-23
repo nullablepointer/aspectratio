@@ -1,4 +1,6 @@
 # Aspect Ratio
-A Minecraft mod that allows players to edit the game's aspect ratio. The mod adds a simple GUI screen powered by [YACL](https://modrinth.com/mod/yacl), letting you easily adjust a multiplier for the game's aspect ratio.
+A Minecraft mod that allows players to edit the game's aspect ratio. The mod adds a simple GUI screen powered by [YACL](https://modrinth.com/mod/yacl), where you can either adjust a multiplier or set a fixed ratio e.g 4:3.
 
-**Please note** that this mod does not modify the player's view model. Please use separate mods for that.
+**Note:** This mod **only** modifies the world rendering.
+
+It does **not** change the aspect ratio of the viewmodel, HUD, or menus. For those, please use separate mods.

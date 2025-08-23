@@ -5,6 +5,7 @@ import com.terraformersmc.modmenu.api.ModMenuApi;
 import dev.isxander.yacl3.api.ConfigCategory;
 import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.api.YetAnotherConfigLib;
+import dev.isxander.yacl3.api.controller.EnumControllerBuilder;
 import dev.isxander.yacl3.api.controller.FloatFieldControllerBuilder;
 import dev.isxander.yacl3.api.controller.ValueFormatter;
 import net.minecraft.text.Text;
@@ -15,20 +16,29 @@ public class ConfigScreen implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         ConfigCategory.Builder main = ConfigCategory.createBuilder()
-                .name(Text.literal("Main"));
+                .name(Text.translatable("aspectratio.main"));
+
+        main.option(Option.<Aspectratio.Modes>createBuilder()
+                .name(Text.translatable("aspectratio.mode"))
+                .binding(Aspectratio.Modes.MULTIPLIER, () -> Config.HANDLER.instance().mode, val -> Config.HANDLER.instance().mode = val)
+                .controller(opt -> EnumControllerBuilder.create(opt)
+                        .enumClass(Aspectratio.Modes.class))
+                .build()
+        );
 
         main.option(Option.<Float>createBuilder()
-                .name(Text.literal("Multiplier"))
-                .binding(1.0f, () -> Config.HANDLER.instance().multiplier, val -> Config.HANDLER.instance().multiplier = val)
+                .name(Text.translatable("aspectratio.ratio"))
+                .binding(1.0f, () -> Config.HANDLER.instance().ratio, val -> Config.HANDLER.instance().ratio = val)
                 .controller(opt -> FloatFieldControllerBuilder.create(opt)
                         .range(0.0f, 2.0f)
                         .formatValue(new FloatFormatter(3)))
                 .build()
         );
 
+
         return parent -> YetAnotherConfigLib.createBuilder()
                 .save(Config.HANDLER::save)
-                .title(Text.literal("Aspect Ratio Settings"))
+                .title(Text.translatable("aspectratio.settings"))
                 .category(main.build())
                 .build()
                 .generateScreen(parent);

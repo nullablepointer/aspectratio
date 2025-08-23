@@ -47,7 +47,13 @@ public abstract class GameRendererMixin {
         }
         float height = client.getWindow().getFramebufferHeight();
         float width = client.getWindow().getFramebufferWidth();
-        float aspect = (width / height) * Config.HANDLER.instance().multiplier;
+        float customRatio = Config.HANDLER.instance().ratio;
+
+        float aspect = switch (Config.HANDLER.instance().mode) {
+            case FIXED -> customRatio;
+            case MULTIPLIER -> (width / height) * customRatio;
+        };
+
         return matrix4f.perspective((float) Math.toRadians(fov), aspect, 0.05F, this.getFarPlaneDistance());
     }
 }

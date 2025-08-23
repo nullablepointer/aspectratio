@@ -12,6 +12,7 @@
     "sources": "https://github.com/nullablepointer/aspectratio"
   },
   "license": "GPL-3.0-only",
+  "icon": "assets/aspectratio/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
